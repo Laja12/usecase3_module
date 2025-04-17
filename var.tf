@@ -67,6 +67,6 @@ variable "rds_password" {
 
 variable "ami_id" {
   description = "The AMI ID for the EC2 instances"
-  type = sting
+  type = string
   default     = "ami-04aa00acb1165b32a"
 }
