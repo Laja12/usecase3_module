@@ -32,17 +32,16 @@ jobs:
  
       - name: Terraform Lint
         run: tflint
-      - name: Initialize Terraform
-        run: terraform 
-        
+
       - name: Checkov Scan
         uses: bridgecrewio/checkov-action@master
         with:
           directory: .
           framework: terraform
-
-      
-
+          
+      - name: Initialize Terraform
+        run: terraform 
+        
       - name: Format Terraform
         run: terraform fmt -recursive
 
