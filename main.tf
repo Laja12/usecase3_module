@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "./module/vpc"
+  source = "./modules/vpc"
 
   vpc_cidr               = var.vpc_cidr
   public_subnet_cidr_1   = var.public_subnet_cidr_1
@@ -13,13 +13,13 @@ module "vpc" {
 }
 
 module "sg-group" {
-  source = "./module/security_groups"
+  source = "./modules/security_groups"
 
   vpc_id = module.vpc.vpc_id
 }
 
 module "ec2" {
-  source = "./module/ec2"
+  source = "./modules/ec2"
 
   ami_id         = var.ami_id
   instance_type  = var.instance_type
@@ -29,7 +29,7 @@ module "ec2" {
 }
 
 module "rds" {
-  source = "./module/rds"
+  source = "./modules/rds"
 
   rds_instance_class = var.rds_instance_class
   rds_username       = var.rds_username
