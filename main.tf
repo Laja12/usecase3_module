@@ -1,24 +1,40 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
 
 module "vpc" {
-  source = "./modules/vpc"
-  vpc_cidr = "10.0.0.0/16"
-  public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
-  private_subnet_cidrs = ["10.0.3.0/24", "10.0.4.0/24"]
+  source = "./module/vpc"
+
+  vpc_cidr               = var.vpc_cidr
+  public_subnet_cidr_1   = var.public_subnet_cidr_1
+  public_subnet_cidr_2   = var.public_subnet_cidr_2
+  private_subnet_cidr_1  = var.private_subnet_cidr_1
+  private_subnet_cidr_2  = var.private_subnet_cidr_2
+}
+
+module "sg-group" {
+  source = "./module/sg-group"
+
+  vpc_id = module.vpc.vpc_id
 }
 
 module "ec2" {
-  source = "./modules/ec2"
-  ami = "ami-084568db4383264d4"
-  instance_type = "t2.micro"
-  subnet_ids = [module.vpc.public_subnet_ids[0], module.vpc.public_subnet_ids[1]]
+  source = "./module/ec2"
+
+  ami_id         = var.ami_id
+  instance_type  = var.instance_type
+  public_subnet_1_id = module.vpc.public_subnet_1_id
+  public_subnet_2_id = module.vpc.public_subnet_2_id
+  security_group_id  = module.sg-group.web_sg_id
 }
 
+module "rds" {
+  source = "./module/rds"
 
-module "security_groups" {
-  source = "./modules/security_groups"
-  web_sg_name = "web-sg"
-  vpc_id = module.vpc.vpc_id
+  rds_instance_class = var.rds_instance_class
+  rds_username       = var.rds_username
+  rds_password       = var.rds_password
+  private_subnet_1_id = module.vpc.private_subnet_1_id
+  private_subnet_2_id = module.vpc.private_subnet_2_id
+  security_group_id   = module.sg-group.db_sg_id
 }
