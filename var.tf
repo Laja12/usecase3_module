@@ -1,64 +1,63 @@
-output "vpc_id" {
-  description = "The ID of the VPC"
-  value       = module.vpc.vpc_id
+variable "aws_region" {
+  description = "AWS Region"
+  default     = "us-east-1"
 }
 
-output "public_subnet_1_id" {
-  description = "The ID of public subnet 1"
-  value       = module.vpc.public_subnet_1_id
+variable "s3_bucket_name" {
+  description = "S3 bucket name for storing Terraform state"
+  default     = "alb-project-bucket123"
 }
 
-output "public_subnet_2_id" {
-  description = "The ID of public subnet 2"
-  value       = module.vpc.public_subnet_2_id
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  default     = "10.0.0.0/16"
 }
 
-output "private_subnet_1_id" {
-  description = "The ID of private subnet 1"
-  value       = module.vpc.private_subnet_1_id
+variable "public_subnet_cidr_1" {
+  description = "CIDR block for the first public subnet"
+  default     = "10.0.1.0/24"
 }
 
-output "private_subnet_2_id" {
-  description = "The ID of private subnet 2"
-  value       = module.vpc.private_subnet_2_id
+variable "public_subnet_cidr_2" {
+  description = "CIDR block for the second public subnet"
+  default     = "10.0.2.0/24"
 }
 
-output "internet_gateway_id" {
-  description = "The ID of the Internet Gateway"
-  value       = module.vpc.internet_gateway_id
+variable "private_subnet_cidr_1" {
+  description = "CIDR block for the first private subnet"
+  default     = "10.0.3.0/24"
 }
 
-output "nat_gateway_id" {
-  description = "The ID of the NAT Gateway"
-  value       = module.vpc.nat_gateway_id
+variable "private_subnet_cidr_2" {
+  description = "CIDR block for the second private subnet"
+  default     = "10.0.4.0/24"
 }
 
-output "web_sg_id" {
-  description = "The ID of the web security group"
-  value       = module.sg-group.web_sg_id
+variable "instance_type" {
+  description = "EC2 instance type"
+  default     = "t2.micro"
 }
 
-output "db_sg_id" {
-  description = "The ID of the database security group"
-  value       = module.sg-group.db_sg_id
+variable "rds_instance_class" {
+  description = "The instance class for the RDS MySQL database"
+  type        = string
+  default     = "db.t3.micro"
 }
 
-output "web_server_1_id" {
-  description = "The ID of Web Server 1"
-  value       = module.ec2.web_server_1_id
+variable "rds_username" {
+  description = "The username for the RDS database"
+  type        = string
+  default     = "Myrds1"
 }
 
-output "web_server_2_id" {
-  description = "The ID of Web Server 2"
-  value       = module.ec2.web_server_2_id
+variable "rds_password" {
+  description = "The password for the RDS database"
+  type        = string
+  sensitive   = true
+  default     = "Myrds123"
 }
 
-output "rds_instance_id" {
-  description = "The ID of the RDS instance"
-  value       = module.rds.rds_instance_id
-}
-
-output "db_subnet_group_name" {
-  description = "The name of the DB subnet group"
-  value       = module.rds.db_subnet_group_name
+variable "ami_id" {
+  description = "The AMI ID for the EC2 instances"
+  default     = "ami-04aa00acb1165b32a"
 }
