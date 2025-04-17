@@ -29,5 +29,14 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
+      - name: Format Terraform
+        run: terraform fmt -recursive
+
+      - name: Validate Terraform
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan
+
       - name: Apply Terraform plan
         run: terraform apply -auto-approve
