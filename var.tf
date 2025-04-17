@@ -4,11 +4,6 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "s3_bucket_name" {
-  description = "S3 bucket name for storing Terraform state"
-  type = string
-  default     = "alb-project-bucket123"
-}
 
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
