@@ -29,7 +29,7 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_ami_id"></a> [ami\_id](#input\_ami\_id) | The AMI ID for the EC2 instances | `string` | `"ami-04aa00acb1165b32a"` | no |
-| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS Region | `string` | `"us-east-1"` | no |
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS Region | `string` | `"us-east-2"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | EC2 instance type | `string` | `"t2.micro"` | no |
 | <a name="input_private_subnet_cidr_1"></a> [private\_subnet\_cidr\_1](#input\_private\_subnet\_cidr\_1) | CIDR block for the first private subnet | `string` | `"10.0.3.0/24"` | no |
 | <a name="input_private_subnet_cidr_2"></a> [private\_subnet\_cidr\_2](#input\_private\_subnet\_cidr\_2) | CIDR block for the second private subnet | `string` | `"10.0.4.0/24"` | no |
